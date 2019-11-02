@@ -5,6 +5,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Classe que controla os clientes que entram no servidor, como também a manipulação dos arquivos
+ */
+
 public class Server {
     private final ArrayList<Client> clients = new ArrayList<Client>();
     private final ArrayList<FileServer> fileServers = new ArrayList<FileServer>();
@@ -12,15 +16,27 @@ public class Server {
     private static String directory;
     private static String input;
 
-
+    /**
+     * Retorna um Array com os clientes
+     * @return ArrayList de clientes
+     */
     public ArrayList<Client> getClientes() {
         return clients;
     }
+
+    /**
+     * Retorna uma Array com os arquivos
+     * @return ArrayList de fileServer
+     */
 
     public ArrayList<FileServer> getFileServers() {
         return fileServers;
     }
 
+    /**
+     * Retorna o Connect
+     * @return string connect
+     */
     public static String getConnect() {
         return connect;
     }
