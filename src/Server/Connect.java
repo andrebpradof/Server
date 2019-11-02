@@ -72,7 +72,7 @@ public class Connect implements Runnable{
                         //Encerra conexão
                         if (input.compareToIgnoreCase("sair") == 0) {
                             System.out.println("Conexão encerrada");
-                            break;
+                            return;
                         }
 
                         //Atualiza arquivo
