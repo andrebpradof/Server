@@ -32,7 +32,7 @@ public class Connect implements Runnable{
      */
     @Override
     public void run() {
-        int id = 0;
+        int id = 0; //identificação de arquivo para abrir ou salvar
         Scanner scanner = new Scanner(System.in);
         while(true) {
             System.out.println("******** Opções do usuário ******** ");
@@ -42,15 +42,15 @@ public class Connect implements Runnable{
             System.out.println("4 - Sair");
             System.out.print("Opção: ");
             input = scanner.next();
-            switch (input.charAt(0)) {
+            switch (input.charAt(0)) { //le o comando do usuario
 
                 case '1':
                     System.out.print("Nome do arquivo: ");
-                    input = scanner.next();
+                    input = scanner.next(); //le o nome do arquivo a se criar
                 {
                     try {
 
-                        id = server.newFile(input);
+                        id = server.newFile(input); //chama a funcao de criacao de um novo arquivo
                     } catch (IOException ex) {
                         Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -70,11 +70,11 @@ public class Connect implements Runnable{
                     }
                     break;
                 case '3':
-                    server.showFiles();
+                    server.showFiles(); //chama o metodo de server que mostra os arquivos disponiveis para serem abertos
                     System.out.println("");
                     System.out.print("Id do arquivo para abrir: ");
-                    input = scanner.next();
-                    client.setFileServer(server.getFileServers().get(id));
+                    input = scanner.next(); //lê o id do arqivo que o usuario deseja abrir
+                    client.setFileServer(server.getFileServers().get(id)); //pega o arquivo do servidor que o cliente indicou
                     System.out.println("Digite o texto que viria do editor. Para deconectar digite 'sair':");
 
                     while (true) {
@@ -83,14 +83,14 @@ public class Connect implements Runnable{
                         input = scanner.next();
 
                         //Encerra conexão
-                        if (input.compareToIgnoreCase("sair") == 0) {
+                        if (input.compareToIgnoreCase("sair") == 0) { //quando o usuario digita "sair", ele é desconectado
                             System.out.println("Conexão encerrada");
                             return;
                         }
 
                         //Atualiza arquivo
                         try {
-                            server.updateFile(id, input);
+                            server.updateFile(id, input); //o texto é salvo no arquivo
                         } catch (IOException e) {
                             Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, e);
                         }
@@ -98,7 +98,7 @@ public class Connect implements Runnable{
 
 
                 case '4':
-                    System.out.println("Conexão encerrada");
+                    System.out.println("Conexão encerrada"); //encerra-se a conexão
                     conect = false;
                     break;
             }
