@@ -138,7 +138,7 @@ public class Server {
 
         while(true){
             input = scanner.next();
-            if("conectar".equals(input)){
+            if("conectar".compareToIgnoreCase(input) == 0){
                 System.out.println("Novo usuário conectado!");
                 System.out.println();
 
