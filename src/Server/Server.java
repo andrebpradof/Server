@@ -17,7 +17,7 @@ public class Server {
         return clients;
     }
 
-    public ArrayList<FileServer> getArqs() {
+    public ArrayList<FileServer> getFileServers() {
         return fileServers;
     }
 
@@ -37,7 +37,7 @@ public class Server {
         directory = directoryIn;
     }
 
-    public static void alerta(String text, String title, int type){
+    public static void message(String text, String title, int type){
         JOptionPane optionPane = new JOptionPane(text,type);
         JDialog dialog = optionPane.createDialog(title);
         dialog.setAlwaysOnTop(true);
@@ -90,11 +90,11 @@ public class Server {
             }
 
         } catch (Exception e) {
-            alerta("Caminho "+directory+" inválido!", "Erro", 0);
+            message("Erro no diretório "+directory+"!", "Erro", 0);
         }
     }
 
-    public void UpdateFile(int FileId, String text) throws IOException{
+    public void updateFile(int FileId, String text) throws IOException{
         String metDirectory = fileServers.get(FileId).getDirectory();
         File file = new File(metDirectory);
         Writer writer;
@@ -105,28 +105,31 @@ public class Server {
 
     }
 
-    public void printArqs(){
+    public void showFiles(){
         int i;
         for (i = 0; i < fileServers.size(); i++) {
-            System.out.print("ID: "+i+" - Nome do arquivo: "+fileServers.get(i).getName()+" - Tamanho: "+fileServers.get(i).getSize());
+            System.out.print("id: "+i+" - Nome do arquivo: "+fileServers.get(i).getName());
             System.out.println("");
         }
     }
 
     public static void main(String []args) throws IOException {
         Server server = new Server();
-
-        while(true){
-            directory = JOptionPane.showInputDialog("Caminho para os arquivos:");
-            if(directory != null){ break; }
-            alerta("Caminho inválido!", "Erro", 0);
-        }
-
-        JOptionPane.showMessageDialog(null,"Caminho dos arquivos para edição: "+directory);
-
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Aguardando conexão...");
+        while(true){
+            System.out.print("Diretório para os arquivos: ");
+            directory = scanner.nextLine();
+            //directory = JOptionPane.showInputDialog("Diretório para os arquivos:");
+            if(directory != null){ break; }
+            message("Diretório inválido!", "Erro", 0);
+        }
+
+        //JOptionPane.showMessageDialog(null,"Diretório de edição desejado: "+directory);
+
+
+        System.out.println("******** Escutando Usuários ********");
+        System.out.print("Digite conectar para logar no servidor: ");
 
         //lista arquivos da pasta e salva em uma lista
         server.filelist();
@@ -136,7 +139,8 @@ public class Server {
         while(true){
             input = scanner.next();
             if("conectar".equals(input)){
-                System.out.println("Cliente conectado...");
+                System.out.println("Novo usuário conectado!");
+                System.out.println();
 
                 Client user = new Client();
 
