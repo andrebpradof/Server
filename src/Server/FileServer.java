@@ -54,37 +54,65 @@ public class FileServer {
     }
 
     /**
-     * seta a data de modificação do arquivo
-     * @param modificationDate string
+     * seta a data de modificacao do arquivo
+     * @param modificationDate string de data de modificacao
      */
     public void setModificationDate(String modificationDate) {
         this.modificationDate = modificationDate;
     }
 
+    /**
+     * seta o nome do criador do arquivo
+     * @param creator string do nome do criador do arquivo
+     */
     public void setCreator(String creator) {
         this.creator = creator;
     }
 
+    /**
+     * pega o nome do arquivo
+     * @return retorna a string name do nome do arquivo
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * pega o nome do diretorio
+     * @return retorna a string directory do nome do diretorio
+     */
     public String getDirectory() {
         return directory;
     }
 
+    /**
+     * pega a lista de clientes conectados
+     * @return retorna uma ArrayList dos clientes conectados
+     */
     public ArrayList<Client> getClients() {
         return clients;
     }
 
+    /**
+     * pega o tamanho do arquivo
+     * @return retorna um long com o tamanho do arquivo
+     */
     public long getSize() {
         return size;
     }
 
+    /**
+     * pega data de modificacao do arquivo
+     * @return retorna uma string com data de modificacao do arquivo
+     */
     public String getModificationDate() {
         return modificationDate;
     }
 
+    /**
+     * pega o nome do criador do arquivo
+     * @return retorna uma string com o nome do criador do arquivo
+     */
     public String getCreator() {
         return creator;
     }

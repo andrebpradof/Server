@@ -5,18 +5,31 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Classe que simula a interacao do usuario com o servidor, contendo o metodo run da thread com as opcoes de manipulacao
+ * que o servidor proporciona ao usuario
+ */
 public class Connect implements Runnable{
     private final Server server;
     private final Client client;
-    private String input;
-    private boolean conect;
+    private String input; //string que auxilia na leitura dos comandos do usuario
+    private boolean conect; //indica se o usuario esta conectado
 
+    /**
+     * Construtor de Connect. O indicador de conexao passa a valer como conectado e sao inicializados o cliente e o servidor
+     * @param client cliente se conectara ao servidor
+     * @param server servidor utilizado na conexao
+     */
     public Connect(Client client, Server server) {
         this.conect = true;
         this.client = client;
         this.server = server;
     }
 
+    /**
+     * Metodo que interage com o usuario, dando a ele suas opcoes,
+     * lendo seus comandos e chamando os metodos do servidor correspondentes a tais comandos
+     */
     @Override
     public void run() {
         int id = 0;
